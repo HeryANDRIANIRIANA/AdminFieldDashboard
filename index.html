@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Lecteur PDF Dynamique</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; }
+        iframe { width: 100%; height: 100vh; border: none; }
+    </style>
+</head>
+<body>
+
+    <iframe id="pdfViewer" src=""></iframe>
+
+    <script>
+        // 1. Récupérer les paramètres de l'URL (ex: ?file=doc.pdf&page=5)
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // 2. Extraire les valeurs ou définir des valeurs par défaut
+        const pdfFile = urlParams.get('file') || 'document.pdf'; // 'document.pdf' par défaut
+        const pageNum = urlParams.get('page') || '1';           // Page 1 par défaut
+
+        // 3. Construire l'URL finale pour l'iframe
+        const iframeUrl = `${pdfFile}#page=${pageNum}`;
+
+        // 4. Injecter l'URL dans l'iframe
+        document.getElementById('pdfViewer').src = iframeUrl;
+    </script>
+</body>
+</html>
